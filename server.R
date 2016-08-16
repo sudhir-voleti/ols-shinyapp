@@ -1,5 +1,5 @@
 #################################################
-#      OLS App    #
+#      Summary & OLS App                      #
 #################################################
 
 library(pastecs)
@@ -7,6 +7,7 @@ library(RColorBrewer)
 library(Hmisc)
 library(ggplot2)
 library(reshape2)
+
 # library(gplot)
 
 shinyServer(function(input, output,session) {
@@ -31,8 +32,8 @@ output$yvarselect <- renderUI({
 output$xvarselect <- renderUI({
   if (identical(Dataset(), '') || identical(Dataset(),data.frame())) return(NULL)
   
-  checkboxGroupInput("xAttr", "Select X variable",
-                     setdiff(colnames(Dataset()),input$yAttr), setdiff(colnames(Dataset()),input$yAttr)[2:3])
+  checkboxGroupInput("xAttr", "Select X variables",
+                     setdiff(colnames(Dataset()),input$yAttr), setdiff(colnames(Dataset()),input$yAttr))
   
 })
 
@@ -212,6 +213,13 @@ output$datatable = renderTable({
   Y.hat = ols()$fitted.values
   data.frame(Y.hat,mydata())
 })
+
+output$downloadData <- downloadHandler(
+  filename = function() { "beer data.csv" },
+  content = function(file) {
+    write.csv(read.csv("data/beer data.csv"), file, row.names=F, col.names=F)
+  }
+)
 
 })
 
