@@ -20,6 +20,15 @@ Dataset <- reactive({
   }
 })
 
+
+pred.readdata <- reactive({
+  if (is.null(input$filep)) { return(NULL) }
+  else{
+    readdata <- as.data.frame(read.csv(input$filep$datapath ,header=TRUE, sep = ","))
+    return(readdata)
+  }
+})
+
 # Select variables:
 output$yvarselect <- renderUI({
   if (identical(Dataset(), '') || identical(Dataset(),data.frame())) return(NULL)
@@ -57,6 +66,19 @@ mydata = reactive({
   
 })
 
+
+Dataset.Predict <- reactive({
+  fxc = setdiff(input$fxAttr, input$yAttr)
+  mydata = pred.readdata()[,c(input$xAttr)]
+  
+  if (length(fxc) >= 1){
+    for (j in 1:length(fxc)){
+      mydata[,fxc[j]] = as.factor(mydata[,fxc[j]])
+    }
+  }
+  return(mydata)
+})
+
 out = reactive({
 data = mydata()
 Dimensions = dim(data)
@@ -72,7 +94,8 @@ nu = which(Class %in% c("numeric","integer"))
 fa = which(Class %in% c("factor","character"))
 nu.data = data[,nu] 
 fa.data = data[,fa] 
-Summary = list(Numeric.data = round(stat.desc(nu.data) ,4), factor.data = describe(fa.data))
+Summary = list(Numeric.data = round(stat.desc(nu.data)[c(4,5,6,8,9,12,13),] ,4), factor.data = describe(fa.data))
+# Summary = list(Numeric.data = round(stat.desc(nu.data)[c(4,5,6,8,9,12,13),] ,4), factor.data = describe(fa.data))
 
 a = seq(from = 0, to=200,by = 4)
 j = length(which(a < ncol(nu.data)))
@@ -201,6 +224,8 @@ output$resplot2 = renderPlot({
 output$resplot3 = renderPlot({
   plot(mydata()[,input$yAttr],ols()$fitted.values)#
 })
+
+
 output$olssummary = renderPrint({
   summary(ols())
   })
@@ -214,10 +239,36 @@ output$datatable = renderTable({
   data.frame(Y.hat,mydata())
 })
 
+
+prediction = reactive({
+  val = predict(ols(),Dataset.Predict())
+  out = data.frame(Yhat = val, pred.readdata())
+})
+
+output$prediction =  renderPrint({
+  if (is.null(input$filep)) {return(NULL)}
+  head(prediction(),10)
+})
+
+#------------------------------------------------#
+output$downloadData1 <- downloadHandler(
+  filename = function() { "Predicted Data.csv" },
+  content = function(file) {
+    if (identical(Dataset(), '') || identical(Dataset(),data.frame())) return(NULL)
+    write.csv(prediction(), file, row.names=F, col.names=F)
+  }
+)
 output$downloadData <- downloadHandler(
   filename = function() { "beer data.csv" },
   content = function(file) {
     write.csv(read.csv("data/beer data.csv"), file, row.names=F, col.names=F)
+  }
+)
+
+output$downloadData2 <- downloadHandler(
+  filename = function() { "beer data - prediction sample.csv" },
+  content = function(file) {
+    write.csv(read.csv("data/beer data - prediction sample.csv"), file, row.names=F, col.names=F)
   }
 )
 
