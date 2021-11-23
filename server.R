@@ -189,7 +189,7 @@ ols2 = reactive({
   drop = which(input$yAttr == colnames(out()[[5]]))
                
   x0 = out()[[5]][,-drop]
-  x01 = scale(x0, center = T, scale = T)
+  x01 = scale(x0, center = F, scale = apply(x0, 2, sd, na.rm = TRUE))
   
   y = out()[[5]][,drop]
   
