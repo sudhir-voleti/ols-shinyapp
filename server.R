@@ -41,7 +41,8 @@ output$yvarselect <- renderUI({
 output$xvarselect <- renderUI({
   if (identical(Dataset(), '') || identical(Dataset(),data.frame())) return(NULL)
   
-  checkboxGroupInput("xAttr", "Select X variables",
+  selectInput("xAttr", "Select X variables",
+              multiple = TRUE, selectize = TRUE,
                      setdiff(colnames(Dataset()),input$yAttr), setdiff(colnames(Dataset()),input$yAttr))
   
 })
@@ -49,7 +50,8 @@ output$xvarselect <- renderUI({
 output$fxvarselect <- renderUI({
   if (identical(Dataset(), '') || identical(Dataset(),data.frame())) return(NULL)
   
-  checkboxGroupInput("fxAttr", "Select factor variable in X",
+  selectInput("fxAttr", "Select factor variable in X",multiple = TRUE,
+              selectize = TRUE,
                      setdiff(colnames(Dataset()),input$yAttr),"" )
   
 })
@@ -189,7 +191,7 @@ ols2 = reactive({
   drop = which(input$yAttr == colnames(out()[[5]]))
                
   x0 = out()[[5]][,-drop]
-  x01 = scale(x0, center = T, scale = T)
+  x01 = scale(x0)
   
   y = out()[[5]][,drop]
   
