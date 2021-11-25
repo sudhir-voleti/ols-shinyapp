@@ -48,9 +48,10 @@ shinyUI(fluidPage(
                          plotOutput("heatmap")),
                 tabPanel("Summary OLS", 
                          h4("Summary OLS Model"),
-                         verbatimTextOutput("olssummary"),
+                         DT::dataTableOutput("olssummary"),
                          h4("Summary OLS standardized model"),
-                         verbatimTextOutput("olssummarystd")),
+                         DT::dataTableOutput("olssummarystd")
+                        ),
                 tabPanel("Residuals Plot",
                          h4("Fitted Values vs Residuals"),
                          plotOutput("resplot2"),
