@@ -228,12 +228,20 @@ output$resplot3 = renderPlot({
 })
 
 
-output$olssummary = renderPrint({
-  summary(ols())
+output$olssummary = DT::renderDataTable({
+  #summary(ols())
+  
+  result <- summary(ols())$coefficients
+  
+  DT::datatable(round(result,3))
   })
 
-output$olssummarystd = renderPrint({
-  summary(ols2())
+output$olssummarystd = DT::renderDataTable({
+  #summary(ols2())
+  
+  result <- summary(ols2())$coefficients
+  
+  DT::datatable(round(result,3))
 })
 
 output$datatable = renderTable({
