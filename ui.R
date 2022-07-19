@@ -52,6 +52,12 @@ shinyUI(fluidPage(
                          h4("Summary OLS standardized model"),
                          DT::dataTableOutput("olssummarystd")
                         ),
+                tabPanel("Tests for Assumptions",
+                         h4("Tests for Normality"),
+                         h4("Multicollinearity")),
+                tabPanel("Tests for Assumptions 2",
+                         h4("Heterskedasticity"),
+                         h4("Autocorrelation")),
                 tabPanel("Residuals Plot",
                          h4("Fitted Values vs Residuals"),
                          plotOutput("resplot2"),
