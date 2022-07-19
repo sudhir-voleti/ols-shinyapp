@@ -66,7 +66,7 @@ shinyUI(fluidPage(
                          p("A VIF of 1 means that the regression coefficient is not inflated by the presence of other predictors and hence, multicollinearity does not exist.")
                         ),
                 tabPanel("Tests for Assumptions 2",
-                         h3("Heterskedasticity"),
+                         h3("Heterscedasticity"),
                          h4("Breusch-Pagan Test"),
                          p("This test checks whether the variance of the residuals depends on the value of the independent variable."),
                          h4("White's Test"),
