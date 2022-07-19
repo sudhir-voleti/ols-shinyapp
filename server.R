@@ -251,6 +251,32 @@ output$WhiteTest <-renderPrint({
   skedastic::white_lm(ols())
 })  
   
+output$QQplot <- renderPlot({
+  set.seed(1234)
+  par(mfrow=c(1,2))
+  qqnorm(mydata())
+  qqline(mydata())
+})  
+  
+output$KSTest <- renderPrint({
+ks.test(mydata(),'pnorm')
+})  
+  
+output$VIF <- DT::renderTable({
+  DT::datatable(ols_vif_tol(ols()))
+  })  
+  
+output$BPTest <- renderPrint({
+  lmtest::bptest(ols())
+})  
+  
+output$DWTest <- renderPrint({
+  lmtest::dwtest(ols())
+})  
+  
+output$ACFPlot <- renderPlot({
+  stats::acf(ols()$residuals, type="correlation")
+})  
   
 output$datatable = renderTable({
   Y.hat = ols()$fitted.values
