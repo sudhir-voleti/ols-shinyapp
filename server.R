@@ -7,7 +7,10 @@ library(RColorBrewer)
 library(Hmisc)
 library(ggplot2)
 library(reshape2)
-
+library(olsrr)
+library(stats)
+library(skedastic)
+library(lmtest)
 # library(gplot)
 
 shinyServer(function(input, output,session) {
@@ -244,6 +247,11 @@ output$olssummarystd = DT::renderDataTable({
   DT::datatable(round(result,3))
 })
 
+output$WhiteTest <-renderPrint({
+  skedastic::white_lm(ols())
+})  
+  
+  
 output$datatable = renderTable({
   Y.hat = ols()$fitted.values
   data.frame(Y.hat,mydata())
