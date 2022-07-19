@@ -254,12 +254,12 @@ output$WhiteTest <-renderPrint({
 output$QQplot <- renderPlot({
   set.seed(1234)
   par(mfrow=c(1,2))
-  qqnorm(mydata())
-  qqline(mydata())
+  qqnorm(Dataset()[,c(input$yAttr)])
+  qqline(Dataset()[,c(input$yAttr)])
 })  
   
 output$KSTest <- renderPrint({
-ks.test(mydata(),'pnorm')
+ks.test(Dataset()[,c(input$yAttr)],'pnorm')
 })  
   
 output$VIF <- DT::renderDataTable({
