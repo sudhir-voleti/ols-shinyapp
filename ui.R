@@ -71,7 +71,8 @@ shinyUI(fluidPage(
                          p("This test checks whether the variance of the residuals depends on the value of the independent variable."),
                          h4("White's Test"),
                          p("The White Test is a special case of the BP-test. It is an asymptotic test and is therefore meant to be used on large samples. The test results of smaller samples must be interpreted with caution. If the model has many dependent variables, the test might be hard to calculate."),
-                         h3("Autocorrelation")
+                         verbatimTextOutput("WhiteTest"),
+                         h3("Autocorrelation"),
                          h4('ACF Plot'),
                          p('The interpretation of the ACF plot is simple. The X-axis corresponds to the different lags of the residuals (lag-0, lag-1, lag-2, etc). Whereas, the Y-axis shows the correlation of each lag. Finally, the dashed blue line represents the significance levels.'),
                          h4('Durbin-Watson Test'),
