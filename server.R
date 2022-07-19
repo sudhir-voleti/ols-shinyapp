@@ -262,7 +262,7 @@ output$KSTest <- renderPrint({
 ks.test(mydata(),'pnorm')
 })  
   
-output$VIF <- DT::renderTable({
+output$VIF <- DT::renderDataTable({
   DT::datatable(ols_vif_tol(ols()))
   })  
   
