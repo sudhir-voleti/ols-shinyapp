@@ -11,6 +11,7 @@ library(olsrr)
 library(stats)
 library(skedastic)
 library(lmtest)
+library(dplyr)
 # library(gplot)
 
 shinyServer(function(input, output,session) {
@@ -236,6 +237,8 @@ output$olssummary = DT::renderDataTable({
   
   result <- summary(ols())$coefficients
   
+  result <- result %>% mutate(SigCod = case_when(p.value < 0.001 ~ "***", p.value < 0.01 ~"**", p.value < 0.1 ~ "*"))
+  
   DT::datatable(round(result,3))
   })
 
@@ -243,7 +246,7 @@ output$olssummarystd = DT::renderDataTable({
   #summary(ols2())
   
   result <- summary(ols2())$coefficients
-  
+  result <- result %>% mutate(SigCod = case_when(p.value < 0.001 ~ "***", p.value < 0.01 ~"**", p.value < 0.1 ~ "*"))
   DT::datatable(round(result,3))
 })
 
