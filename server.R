@@ -237,7 +237,7 @@ output$olssummary = DT::renderDataTable({
   
   result <- summary(ols())$coefficients
   
-  result <- as.data.frame(result) %>% mutate(SigCod = case_when('Pr(>|t|)' < 0.001 ~ "***", 'Pr(>|t|)' < 0.01 ~"**", 'Pr(>|t|)' < 0.1 ~ "*"))
+  #result <- as.data.frame(result) %>% mutate(SigCod = case_when('Pr(>|t|)' < 0.001 ~ "***", 'Pr(>|t|)' < 0.01 ~"**", 'Pr(>|t|)' < 0.1 ~ "*"))
   
   DT::datatable(round(result,3))
   })
