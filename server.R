@@ -285,7 +285,8 @@ ks.test(Dataset()[,c(input$yAttr)],'pnorm')
 })  
   
 output$VIF <- DT::renderDataTable({
-  DT::datatable(round(ols_vif_tol(ols()),4))
+  a <- DT::datatable(ols_vif_tol(ols()))
+  a
   })  
   
 output$BPTest <- renderPrint({
