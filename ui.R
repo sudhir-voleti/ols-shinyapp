@@ -40,7 +40,7 @@ shinyUI(fluidPage(
                          
                          
                 ),
-                
+                tabPanel("Data Overview",tableOutput("datatable"))
                 tabPanel("Summary Stats", 
                          verbatimTextOutput("summary")),
                 tabPanel("Summary OLS", 
@@ -98,7 +98,7 @@ shinyUI(fluidPage(
                          plotOutput("resplot3"),
                          h4("Residuals plot"),
                          plotOutput("resplot1")),
-                tabPanel("Data with predicted Y",tableOutput("datatable")),
+                tabPanel("Data with predicted Y",tableOutput("datatable2")),
                 tabPanel("Prediction",br(),
                          h4("First 10 rows of predicted data"),
                          p('"Yhat" column is the predicted value.'),
