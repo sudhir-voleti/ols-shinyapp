@@ -65,7 +65,7 @@ shinyUI(fluidPage(
                          h3("Multicollinearity"),
                          h4('Correlation'),
                          verbatimTextOutput("correlation"),
-                         plotOutput("heatmap")
+                         plotOutput("heatmap"),
                          h4("VIF"),
                          p("The Variance Inflation Factor (VIF) measures the inflation in the coefficient of the independent variable due to the collinearities among the other independent variables."),
                          p("As a rule of thumb, a VIF exceeding 5 requires further investigation, whereas VIFs above 10 indicate multicollinearity. VIFs are ideally below 3."),
