@@ -54,7 +54,7 @@ output$xvarselect <- renderUI({
 output$fxvarselect <- renderUI({
   if (identical(Dataset(), '') || identical(Dataset(),data.frame())) return(NULL)
   
-  selectInput("fxAttr", "Select factor variable in X",multiple = TRUE,
+  selectInput("fxAttr", "Select non-metric variable(s) in X",multiple = TRUE,
               selectize = TRUE,
                      setdiff(colnames(Dataset()),input$yAttr),"" )
   
