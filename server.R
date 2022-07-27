@@ -286,7 +286,7 @@ ks.test(Dataset()[,c(input$yAttr)],'pnorm')
   
 output$VIF <- DT::renderDataTable({
   a <- DT::datatable(ols_vif_tol(ols()))
-  a
+  
   })  
   
 output$BPTest <- renderPrint({
@@ -301,11 +301,14 @@ output$ACFPlot <- renderPlot({
   stats::acf(ols()$residuals, type="correlation")
 })  
   
-output$datatable = renderTable({
+output$datatable2 = renderTable({
   Y.hat = ols()$fitted.values
   data.frame(Y.hat,mydata())
 })
 
+output$datatable = renderTable({
+  data.frame(mydata())
+})
 
 prediction = reactive({
   val = predict(ols(),Dataset.Predict())
