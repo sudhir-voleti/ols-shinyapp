@@ -43,14 +43,11 @@ shinyUI(fluidPage(
                 
                 tabPanel("Summary Stats", 
                          verbatimTextOutput("summary")),
-                tabPanel("Correlation", 
-                         verbatimTextOutput("correlation"),
-                         plotOutput("heatmap")),
                 tabPanel("Summary OLS", 
                          h4("Summary OLS Model"),
+                         verbatimTextOutput("AccompaniedResults2"),
                          DT::dataTableOutput("olssummary"),
                          verbatimTextOutput("AccompaniedResults"),
-                         verbatimTextOutput("AccompaniedResults2"),
                          verbatimTextOutput("AccompaniedResults3"),
                          h4("Summary OLS standardized model"),
                          DT::dataTableOutput("olssummarystd")
@@ -65,6 +62,9 @@ shinyUI(fluidPage(
                          p("If the p-value of the test is less than 0.05, it indicates that the data is not normally distributed."),
                          verbatimTextOutput("KSTest"),
                          h3("Multicollinearity"),
+                         h4('Correlation'),
+                         verbatimTextOutput("correlation"),
+                         plotOutput("heatmap")
                          h4("VIF"),
                          p("The Variance Inflation Factor (VIF) measures the inflation in the coefficient of the independent variable due to the collinearities among the other independent variables."),
                          p("As a rule of thumb, a VIF exceeding 5 requires further investigation, whereas VIFs above 10 indicate multicollinearity. VIFs are ideally below 3."),
