@@ -286,8 +286,8 @@ ks.test(Dataset()[,c(input$yAttr)],'pnorm')
   
 output$VIF <- DT::renderDataTable({
   a <- DT::datatable(ols_vif_tol(ols()))
-  a <- data.frame(a)
-  a %>% mutate_if(is.numeric, round, digits=3)
+  
+  a %>% mutate_at(vars(tolerance, VIF), funs(round(., 3)))
   a
   })  
   
