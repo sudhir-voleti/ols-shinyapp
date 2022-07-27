@@ -342,5 +342,28 @@ output$downloadData2 <- downloadHandler(
   }
 )
 
+output$downloadData3 <- downloadHandler(
+  filename = function() { "mtcars.csv" },
+  content = function(file) {
+    write.csv(read.csv("data/mtcars dataset.csv"), file, row.names=F, col.names=F)
+  }
+)  
+ 
+  
+output$downloadData4 <- downloadHandler(
+  filename = function() { "Diamonds_Full.csv" },
+  content = function(file) {
+    write.csv(read.csv("data/diamonds.csv"), file, row.names=F, col.names=F)
+  }
+)  
+ 
+  
+output$downloadData5 <- downloadHandler(
+  filename = function() { "Diamonds_section.csv" },
+  content = function(file) {
+    write.csv(read.csv("data/diamonds_section.csv"), file, row.names=F, col.names=F)
+  }
+)
+  
 })
 
