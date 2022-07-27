@@ -40,7 +40,7 @@ shinyUI(fluidPage(
                          
                          
                 ),
-                tabPanel("Data Overview",tableOutput("datatable")),
+                tabPanel("Data Overview",DT::dataTableOutput("datatable")),
                 tabPanel("Summary Stats", 
                          verbatimTextOutput("summary")),
                 tabPanel("Summary OLS", 
