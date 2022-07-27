@@ -31,11 +31,19 @@ shinyUI(fluidPage(
                          
                          h4(p("Download Sample Input Files")),
                          # br(),
-                         downloadButton('downloadData', 'Download model training input file (works only in browsers)'),
+                         downloadButton('downloadData', 'Download model training input file.'),
                          br(),
                          br(),
-                         downloadButton('downloadData2', 'Download prediction input file (works only in browsers)'),
-                         
+                         downloadButton('downloadData2', 'Download prediction input file.'),
+                         br(),
+                         br(),
+                         downloadButton('downloadData3', 'Download mtcars.csv.'),
+                         br(),
+                         br(),
+                         downloadButton('downloadData4', 'Download full dataset for diamonds.csv.'),
+                         br(),
+                         br(),
+                         downloadButton('downloadData5', 'Download diamonds.csv (5000 entries).'),
                          br()
                          
                          
