@@ -306,8 +306,8 @@ output$datatable2 = renderTable({
   data.frame(Y.hat,mydata())
 })
 
-output$datatable = renderTable({
-  data.frame(mydata())
+output$datatable = DT::renderDataTable({
+  DT::datatable(Dataset())
 })
 
 prediction = reactive({
