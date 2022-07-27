@@ -49,6 +49,7 @@ shinyUI(fluidPage(
                 tabPanel("Summary OLS", 
                          h4("Summary OLS Model"),
                          DT::dataTableOutput("olssummary"),
+                         verbatimTextOutput("AccompaniedResults"),
                          h4("Summary OLS standardized model"),
                          DT::dataTableOutput("olssummarystd")
                         ),
