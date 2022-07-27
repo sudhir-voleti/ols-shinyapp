@@ -250,6 +250,17 @@ output$olssummarystd = DT::renderDataTable({
   DT::datatable(round(result,3))
 })
 
+ output$AccompaniedResults <- renderPrint({
+ result <- summary(ols())
+ toPrint <- paste0('F-statistic: ',result$fstatistic[1], ' on ',result$fstatistic[2], ' and ', result$fstatistic[3], ' DF')
+ toPrint2 <- summary(result$residuals)
+ toPrint3 <- paste0('Multiple R-Squared: ',result$r.squared,', Adjusted R-Squared:  ',result$adj.r.squared)
+   
+ toPrint
+ toPrint2
+ toPrint3
+ }) 
+  
 output$WhiteTest <-renderPrint({
   skedastic::white_lm(ols())
 })  
