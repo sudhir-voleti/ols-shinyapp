@@ -179,8 +179,8 @@ output$olsformula <- renderPrint({
    result <- summary(ols())
    a00 = result$terms 
    formula = formula(a00)
-  toPrint3 <- paste0('Equation : ',formula)
-   toPrint3
+   #toPrint3 <- paste0('Equation : ',formula)
+   formula
 })
 output$olssummary = DT::renderDataTable({
   #summary(ols())
