@@ -116,62 +116,6 @@ output$summary = renderPrint({
       }
 })
 
-# output$scatterplots <- renderUI({
-#   if (is.null(input$file)) {return(NULL)}
-#   else {
-#     
-#     plot_output_list <- lapply(1:out()[[7]], function(i) {
-#       plotname <- paste("plot", i, sep="")
-#       plotOutput(plotname, height = 700, width = 700)
-#     })
-#     # Convert the list to a tagList - this is necessary for the list of items
-#     # to display properly.
-#     do.call(tagList, plot_output_list)
-#   }
-# })
-# 
-# # Call renderPlot for each one. Plots are only actually generated when they
-# # are visible on the web page.
-# max_plots = 50
-# 
-# for (i in 1:max_plots) {
-#   # Need local so that each item gets its own number. Without it, the value
-#   # of i in the renderPlot() will be the same across all instances, because
-#   # of when the expression is evaluated.
-#   local({
-#     
-#     my_i <- i 
-#     plotname <- paste("plot", my_i, sep="")
-#     
-#     output[[plotname]] <- renderPlot({
-#       out1 = out()
-#       a = out1[[6]]
-#       j = my_i
-#       if (ncol(out1[[5]]) == a[j] + 1){
-#         a1 = a[j]+1
-#         a2 = a[j]-1
-#         dai = out1[[5]][,a1:a2]
-#         plot(dai)
-#         }
-#       
-#       else if ( ncol(out1[[5]]) < a[j + 1]){
-#         a1 = a[j]+1
-#         a2 = ncol(out1[[5]])
-#         dai = out1[[5]][,a1:a2]
-#         plot(dai)
-#       }
-#       
-#       else if(ncol(out1[[5]]) > a[j + 1]){
-#         a1 = a[j]+1
-#         a2 = a[j + 1]
-#         dai = out1[[5]][,a1:a2]
-#         plot(dai)
-#       }
-#       
-#       mtext(paste("Scater plot " ,my_i), side = 3, line = 2, cex=2)
-#         })
-#   })
-# }
 
 output$heatmap = renderPlot({ 
   
@@ -231,7 +175,13 @@ output$resplot3 = renderPlot({
   plot(mydata()[,input$yAttr],ols()$fitted.values)#
 })
 
-
+output$olsformula <- renderPrint({
+   result <- summary(ols())
+   a00 = result$terms 
+   formula = formula(a00)
+  toPrint3 <- paste0('Equation : ',formula)
+   toPrint3
+})
 output$olssummary = DT::renderDataTable({
   #summary(ols())
   
