@@ -28,7 +28,18 @@ shinyUI(fluidPage(
                 #
                 
                 tabPanel("Overview",
-                         
+                         h4("App Description"),
+                         p('The application runs Ordinary Least Squares regressions on a user-provided empirical dataset/input file.'),br(),
+                         p('Other tabs also include tests for assumptions that are assumed to be true before infering OLS results.'),br(),
+                         p('These assumptions include :'),br(),
+                         p('1. Linear regression model is linear in parameters.'),br(),
+                         p('2. There is a random sampling of observations.'),br(),
+                         p('3. The conditional mean should be zero.'),br(),
+                         p('4. There is no multi-collinearity.'),br(),
+                         p('5. There is homoscedasticity and no autocorrelation.'),br(),
+                         p('6. [Optional] Error terms should be normally distributed.'),br(), br(),
+                         p('For more information, check this page.'),br(),
+                         a(href="https://en.wikipedia.org/wiki/Ordinary_least_squares","- Wikipedia"),
                          h4(p("Download Sample Input Files")),
                          # br(),
                          downloadButton('downloadData', 'Download model training input file.'),
