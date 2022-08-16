@@ -164,7 +164,7 @@ ols2 = reactive({
   })
 
 output$resplot1 = renderPlot({
-  plot(ols()$residuals, xlab = 'Residuals', ylab='')
+  plot(ols()$residuals, xlab = 'Residuals', ylab='',pch=16,cex=0.4)
   #title(main = "Fitted Values v/s Y"))
 })
 
