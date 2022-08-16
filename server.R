@@ -164,7 +164,7 @@ ols2 = reactive({
   })
 
 output$resplot1 = renderPlot({
-  plot(ols()$residuals, xlab = 'Residuals')
+  plot(ols()$residuals, xlab = 'Residuals', ylab='')
   #title(main = "Fitted Values v/s Y"))
 })
 
@@ -252,8 +252,8 @@ output$DWTest <- renderPrint({
 })  
   
 output$ACFPlot <- renderPlot({
-  plot <- stats::acf(ols()$residuals, type="correlation")
-  plot <- title(main = "Autocorrelation Factor Plot")
+  plot <- stats::acf(ols()$residuals, type="correlation", title = "Autocorrelation Factor Plot")
+  #plot <- title(main = "Autocorrelation Factor Plot")
   plot
 })  
   
