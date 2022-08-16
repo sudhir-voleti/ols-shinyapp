@@ -164,16 +164,18 @@ ols2 = reactive({
   })
 
 output$resplot1 = renderPlot({
-  plot(ols()$residuals)
+  plot(ols()$residuals, xlab = 'Residuals')
+  #title(main = "Fitted Values v/s Y"))
 })
 
 output$resplot2 = renderPlot({
-    plot(ols()$residuals,ols()$fitted.values)
+    plot(ols()$residuals,ols()$fitted.values, xlab = 'Residuals', ylab = 'Fitted Values')
+  title(main = "Fitted Values v/s Residuals")
 })
 
 output$resplot3 = renderPlot({
-  plot(mydata()[,input$yAttr],ols()$fitted.values, xlab = 'Fitted Values', ylab = 'Dependent Variable')
-  title(main = "Fitted Values v/s Y")
+  plot(mydata()[,input$yAttr],ols()$fitted.values, xlab = 'Dependent Variables', ylab = 'Fitted Values')
+  title(main = "Fitted Values v/s Chosen Y Variable")
 
 })
 
@@ -250,7 +252,9 @@ output$DWTest <- renderPrint({
 })  
   
 output$ACFPlot <- renderPlot({
-  stats::acf(ols()$residuals, type="correlation")
+  plot <- stats::acf(ols()$residuals, type="correlation")
+  plot <- title(main = "Autocorrelation Factor Plot")
+  plot
 })  
   
 output$datatable2 = renderTable({
