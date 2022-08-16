@@ -94,7 +94,7 @@ shinyUI(fluidPage(
                          DT::dataTableOutput("VIF")
                         ),
                 tabPanel("Tests for Assumptions 2",
-                         h3("Heterscedasticity"),
+                         h3("Heteroscedasticity"),
                          h4("Breusch-Pagan Test"),
                          p("This test checks whether the variance of the residuals depends on the value of the independent variable."),
                          verbatimTextOutput("BPTest"),
