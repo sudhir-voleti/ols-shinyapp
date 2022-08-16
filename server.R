@@ -172,8 +172,8 @@ output$resplot2 = renderPlot({
 })
 
 output$resplot3 = renderPlot({
-  plot(mydata()[,input$yAttr],ols()$fitted.values)
-  title(main = "Fitted Values v/s Y", xlab = 'Fitted Values', ylab = 'Dependent Variable')
+  plot(mydata()[,input$yAttr],ols()$fitted.values, xlab = 'Fitted Values', ylab = 'Dependent Variable')
+  title(main = "Fitted Values v/s Y")
 
 })
 
