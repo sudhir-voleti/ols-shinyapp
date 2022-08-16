@@ -168,11 +168,13 @@ output$resplot1 = renderPlot({
 })
 
 output$resplot2 = renderPlot({
-  plot(ols()$residuals,ols()$fitted.values)
+    plot(ols()$residuals,ols()$fitted.values)
 })
 
 output$resplot3 = renderPlot({
-  plot(mydata()[,input$yAttr],ols()$fitted.values)#
+  plot(mydata()[,input$yAttr],ols()$fitted.values)
+  title(main = "Fitted Values v/s Y", xlab = 'Fitted Values', ylab = 'Dependent Variable')
+
 })
 
 output$olsformula <- renderPrint({
