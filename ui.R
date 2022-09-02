@@ -52,6 +52,7 @@ shinyUI(fluidPage(
                          h4("Summary OLS standardized model"),
                          DT::dataTableOutput("olssummarystd")
                         ),
+
                 tabPanel("Residuals Plot",
                          h4("Fitted Values vs Residuals"),
                          plotOutput("resplot2"),
@@ -59,6 +60,8 @@ shinyUI(fluidPage(
                          plotOutput("resplot3"),
                          h4("Residuals plot"),
                          plotOutput("resplot1")),
+
+
                 tabPanel("Data with predicted Y",tableOutput("datatable")),
                 tabPanel("Prediction",br(),
                          h4("First 10 rows of predicted data"),
