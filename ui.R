@@ -74,6 +74,7 @@ shinyUI(fluidPage(
                          h4("Summary OLS standardized model"),
                          DT::dataTableOutput("olssummarystd")
                         ),
+
                 tabPanel("Tests for Assumptions",
                          h3("Tests for Normality"),
                          h4("Q-Q Plots"),
@@ -112,12 +113,7 @@ shinyUI(fluidPage(
                          p('(2-4]: means negative autocorrelation'),
                          verbatimTextOutput('DWTest')
                         ),
-                tabPanel("Residuals Plot",
-                         h4("Fitted Values vs Residuals"),
-                         plotOutput("resplot2"),
-                         h4("Fitted Values vs Y"),
-                         plotOutput("resplot3"),
-                         h4("Residuals plot"),
+
                          plotOutput("resplot1"))#,
                 #tabPanel("Data with predicted Y",tableOutput("datatable2")),
                 #tabPanel("Prediction",br(),
@@ -127,6 +123,7 @@ shinyUI(fluidPage(
                 #         h4("Download Predicted Data"),
                 #         downloadButton('downloadData1', 'Download Predicted Data')
                 #)                
+
 
                 )
       ) 
